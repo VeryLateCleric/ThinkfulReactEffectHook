@@ -72,7 +72,7 @@ function App() {
       </div>
       <div className="right column">
       {user.id ? (
-        <AlbumList albums={albums} loading={loading} />
+        <AlbumList albums={albums} loading={loading} user={user}/>
         ) : (
           loading ? <p>Loading...</p> : <p>Please click on a user name to the left</p>
         )}

@@ -3,7 +3,7 @@ import React from "react";
 function AlbumList({ albums, loading, user = {} }) {
   return (
     <div>
-      <h2>{user.id ? `${user.id} Albums` : "User Albums"}</h2>
+      <h2>{user.id ? `${user.name} Albums` : "User Albums"}</h2>
       {loading ? (
         <p>Loading albums...</p>
       ) : (
