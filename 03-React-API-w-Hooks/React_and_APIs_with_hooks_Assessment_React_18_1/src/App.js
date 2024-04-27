@@ -12,14 +12,15 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    document.title = "Awesome Album App";
+    document.title = "Awesome Album App"; // start with setting title per SI5
 
+    // fetch from url given in SI1
     const fetchData = async () => {
       setLoading(true);
       try {
         const usersResponse = await axios.get(
           "https://jsonplaceholder.typicode.com/users"
-        );
+        ); 
         setUsers(usersResponse.data);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -31,17 +32,18 @@ function App() {
     fetchData();
 
     return () => {
-      document.title = "React Album App";
+      document.title = "React Album App"; //on reset set title back
     };
   }, []);
 
+  // Albums from url given in SI2
   useEffect(() => {
     const fetchAlbums = async () => {
       setLoading(true);
       if (currentUser.id) {
         try {
           const albumsResponse = await axios.get(
-            `https://jsonplaceholder.typicode.com/albums?userId=${currentUser.id}`
+            `https://jsonplaceholder.typicode.com/albums?userId=${user.id}`
           );
           setAlbums(albumsResponse.data);
         } catch (error) {

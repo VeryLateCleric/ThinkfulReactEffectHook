@@ -1,9 +1,16 @@
 .App {
   display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+
 }
 
 .column {
-  padding-right: 1em;
+  padding-right: 3em;
+}
+
+.left-column, .right-column {
+  flex: 1
 }
 
 ul {
