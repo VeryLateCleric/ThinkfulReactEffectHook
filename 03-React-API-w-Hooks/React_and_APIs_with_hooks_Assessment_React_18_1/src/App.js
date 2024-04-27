@@ -7,7 +7,7 @@ import UserList from "./UserList";
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [currentUser, setCurrentUser] = useState({});
+  const [user, setUser] = useState({});
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -40,7 +40,7 @@ function App() {
   useEffect(() => {
     const fetchAlbums = async () => {
       setLoading(true);
-      if (currentUser.id) {
+      if (user.id) {
         try {
           const albumsResponse = await axios.get(
             `https://jsonplaceholder.typicode.com/albums?userId=${user.id}`
@@ -61,17 +61,17 @@ function App() {
     return () => {
       setAlbums([]);
     };
-  }, [currentUser]);
+  }, [user]);
 
   // Load data from https://jsonplaceholder.typicode.com/albums?userId=${user.id}
 
   return (
     <div className="App">
       <div className="left column">
-        <UserList users={users} setCurrentUser={setCurrentUser} loading={loading} />
+        <UserList users={users} setUser={setUser} loading={loading} />
       </div>
       <div className="right column">
-      {currentUser.id ? (
+      {user.id ? (
         <AlbumList albums={albums} loading={loading} />
         ) : (
           loading ? <p>Loading...</p> : <p>Please click on a user name to the left</p>
