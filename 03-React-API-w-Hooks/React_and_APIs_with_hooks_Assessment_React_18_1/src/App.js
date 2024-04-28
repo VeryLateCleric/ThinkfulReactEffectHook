@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-
+import ApiFetcher from "./ApiFetcher"
 import AlbumList from "./AlbumList";
 import UserList from "./UserList";
 
@@ -68,14 +68,22 @@ function App() {
   return (
     <div className="App">
       <div className="left column">
+        <ApiFetcher
+          url="https://jsonplaceholder.typicode.com/users"
+          setData={setUsers}
+          setLoading={setLoading}
+        />
         <UserList users={users} setUser={setUser} loading={loading} />
       </div>
       <div className="right column">
-      {user.id ? (
+        <ApiFetcher 
+          url={`https://jsonplaceholder.typicode.com/albums?userId=${user.id}`}
+          setData={setAlbums}
+          setLoading={setLoading}
+        />
+
         <AlbumList albums={albums} loading={loading} user={user}/>
-        ) : (
-          loading ? <p>Loading...</p> : <p>Please click on a user name to the left</p>
-        )}
+
       </div>
     </div>
   );
